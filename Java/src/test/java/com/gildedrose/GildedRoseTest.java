@@ -45,6 +45,17 @@ public class GildedRoseTest {
 
         verifyItem(app.items[0], "+5 Dexterity Vest", -2, 78);
     }
+
+    @Test
+    public void update_quality_dexterity_vest_sellin_bigger_than_zero() {
+        Item[] items = new Item[] { new Item("+5 Dexterity Vest", 2, 30)};
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        verifyItem(app.items[0], "+5 Dexterity Vest", 1, 29);
+    }
+
     @Test
     public void update_quality_aged_brie_quality_smaller_than_50() {
         Item[] items = new Item[] { new Item("Aged Brie", -1, 40)};
@@ -55,4 +66,13 @@ public class GildedRoseTest {
         verifyItem(app.items[0], "Aged Brie", -2, 42);
     }
 
+    @Test
+    public void update_quality_backstage_sellin_negative() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", -1, 50)};
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        verifyItem(app.items[0], "Backstage passes to a TAFKAL80ETC concert", -2, 0);
+    }
 }
