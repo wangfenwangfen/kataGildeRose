@@ -3,10 +3,6 @@ package com.gildedrose;
 class GildedRose {
     private static final int QUALITY_MAX = 50;
     private static final int QUALITY_MIN = 0;
-    private static final String BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
-    private static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
-    private static final String AGED_BRIE = "Aged Brie";
-
 
     Item[] items;
 
@@ -17,33 +13,33 @@ class GildedRose {
     void updateQuality() {
         for (Item item : items) {
 
-            if (!item.name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
+            if (!item.name.equals(ItemType.SULFURAS_HAND_OF_RAGNAROS.getValue())) {
                 decreaseSellinByOne(item, 1);
             }
 
-            if (item.name.equals(AGED_BRIE)
-                    || item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+            if (item.name.equals(ItemType.AGED_BRIE.getValue())
+                    || item.name.equals(ItemType.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT.getValue())) {
                 if (item.quality < QUALITY_MAX) {
                     increaseQualityByOne(item, 1);
 
-                    if (item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+                    if (item.name.equals(ItemType.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT.getValue())) {
                         increaseQualityAccordingToSellIn(item, QUALITY_MAX, 11, 1);
                         increaseQualityAccordingToSellIn(item, QUALITY_MAX, 6, 1);
                     }
                 }
             } else {
-                decreaseQualityAccordingToQuality(item, SULFURAS_HAND_OF_RAGNAROS, QUALITY_MIN, 1);
+                decreaseQualityAccordingToQuality(item, ItemType.SULFURAS_HAND_OF_RAGNAROS, QUALITY_MIN, 1);
             }
 
             if (isSellInPassed(item)) {
-                if (item.name.equals(AGED_BRIE)) {
-                    increaseQualityAccordingToQuality(item, QUALITY_MAX, 1);
-                } else {
-                    if (item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+                if (!item.name.equals(ItemType.AGED_BRIE.getValue())) {
+                    if (item.name.equals(ItemType.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT.getValue())) {
                         item.quality = QUALITY_MIN;
                     } else {
-                        decreaseQualityAccordingToQuality(item, SULFURAS_HAND_OF_RAGNAROS, QUALITY_MIN, 1);
+                        decreaseQualityAccordingToQuality(item, ItemType.SULFURAS_HAND_OF_RAGNAROS, QUALITY_MIN, 1);
                     }
+                } else {
+                    increaseQualityAccordingToQuality(item, QUALITY_MAX, 1);
                 }
             }
         }
@@ -71,9 +67,9 @@ class GildedRose {
         }
     }
 
-    private void decreaseQualityAccordingToQuality(Item item, String itemName_Sulfuras, int quality, int unitOne) {
+    private void decreaseQualityAccordingToQuality(Item item, ItemType itemName_Sulfuras, int quality, int unitOne) {
         if (item.quality > quality) {
-            if (!item.name.equals(itemName_Sulfuras)) {
+            if (!item.name.equals(itemName_Sulfuras.getValue())) {
                 decreaseQualityByOne(item, unitOne);
             }
         }
