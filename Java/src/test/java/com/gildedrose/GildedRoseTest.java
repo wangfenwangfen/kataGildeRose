@@ -5,6 +5,11 @@ import org.junit.Test;
 
 public class GildedRoseTest {
 
+    private void verifyItem(Item item, String expectedName, int expectedSellIn, int expectedQuality) {
+        assertEquals(expectedName, item.name);
+        assertEquals(expectedSellIn, item.sellIn);
+        assertEquals(expectedQuality, item.quality);
+    }
     @Test
     public void foo() {
         Item[] items = new Item[] { new Item("foo", 0, 0) };
@@ -19,9 +24,7 @@ public class GildedRoseTest {
 
         app.updateQuality();
 
-        assertEquals("Elixir of the Mongoose", app.items[0].name);
-        assertEquals(4, app.items[0].sellIn);
-        assertEquals(6, app.items[0].quality);
+        verifyItem(app.items[0], "Elixir of the Mongoose", 4, 6);
     }
     @Test
     public void  update_quality_backstage_passes() {
@@ -30,10 +33,26 @@ public class GildedRoseTest {
 
         app.updateQuality();
 
-        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
-        assertEquals(4, app.items[0].sellIn);
-        assertEquals(10, app.items[0].quality);
+        verifyItem(app.items[0], "Backstage passes to a TAFKAL80ETC concert", 4, 10);
     }
 
+    @Test
+    public void update_quality_dexterity_vest_quality_bigger_than_50() {
+        Item[] items = new Item[] { new Item("+5 Dexterity Vest", -1, 80)};
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        verifyItem(app.items[0], "+5 Dexterity Vest", -2, 78);
+    }
+    @Test
+    public void update_quality_aged_brie_quality_smaller_than_50() {
+        Item[] items = new Item[] { new Item("Aged Brie", -1, 40)};
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        verifyItem(app.items[0], "Aged Brie", -2, 42);
+    }
 
 }
