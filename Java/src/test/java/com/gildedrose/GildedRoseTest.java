@@ -18,7 +18,7 @@ public class GildedRoseTest {
         assertEquals("foo", app.items[0].name);
     }
     @Test
-    public void  update_quality_elixir() {
+    public void  decrease_quality_sellIn_if_is_elixir_when_sellIn_not_passed() {
         Item[] items = new Item[] { new Item("Elixir of the Mongoose", 5, 7)};
         GildedRose app = new GildedRose(items);
 
@@ -27,7 +27,7 @@ public class GildedRoseTest {
         verifyItem(app.items[0], "Elixir of the Mongoose", 4, 6);
     }
     @Test
-    public void  update_quality_backstage_passes() {
+    public void  decrease_sellIn_and_increase_quality_backstage_passes() {
         Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 5, 7)};
         GildedRose app = new GildedRose(items);
 
@@ -37,7 +37,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void update_quality_dexterity_vest_quality_bigger_than_50() {
+    public void decrease_sellIn_and_quality_if_item_is_dexterity_vest_when_quality_superior_max_sellIn_passed() {
         Item[] items = new Item[] { new Item("+5 Dexterity Vest", -1, 80)};
         GildedRose app = new GildedRose(items);
 
@@ -47,7 +47,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void update_quality_dexterity_vest_sellin_bigger_than_zero() {
+    public void decrease_sellIn_and_quality_dexterity_vest_sellIn_inferior_max() {
         Item[] items = new Item[] { new Item("+5 Dexterity Vest", 2, 30)};
         GildedRose app = new GildedRose(items);
 
@@ -57,7 +57,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void update_quality_aged_brie_quality_smaller_than_50() {
+    public void decrease_sellIn_increase_quality_aged_brie_when_quality_inferior_max_sellIn_passed() {
         Item[] items = new Item[] { new Item("Aged Brie", -1, 40)};
         GildedRose app = new GildedRose(items);
 
@@ -67,7 +67,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void update_quality_backstage_sellin_negative() {
+    public void decrease_sellin_and_quality_equals_zero_backstage_when_quality_equalse_max_sellIn_passed() {
         Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", -1, 50)};
         GildedRose app = new GildedRose(items);
 
