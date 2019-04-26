@@ -67,7 +67,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void decrease_sellin_and_quality_equals_zero_backstage_when_quality_equalse_max_sellIn_passed() {
+    public void decrease_sellIn_and_quality_equals_zero_backstage_when_quality_equalse_max_sellIn_passed() {
         Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", -1, 50)};
         GildedRose app = new GildedRose(items);
 
