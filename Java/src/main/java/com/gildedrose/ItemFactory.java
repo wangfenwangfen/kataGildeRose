@@ -23,18 +23,8 @@ class ItemFactory {
         return item.sellIn < 0;
     }
 
-    static void increaseQualityByOne(Item item) {
-        item.quality = item.quality + 1;
-    }
-
     static void decreaseQualityByOne(Item item) {
         item.quality = item.quality - 1;
-    }
-
-    static void increaseQualityAccordingToQuality(Item item) {
-        if (item.quality < GildedRose.QUALITY_MAX) {
-            item.quality = item.quality + 1;
-        }
     }
 
     static boolean isSulfuras(Item item) {

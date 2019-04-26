@@ -1,7 +1,7 @@
 package com.gildedrose;
 
 class GildedRose {
-    static final int QUALITY_MAX = 50;
+    private static final int QUALITY_MAX = 50;
     private static final int QUALITY_MIN = 0;
 
     Item[] items;
@@ -18,22 +18,38 @@ class GildedRose {
 
     private void updateQuality(Item item) {
         decreaseSellInIfNotSulfuras(item);
+        increaseQualityAgedBrie(item);
+        increaseQualityBackstage(item);
 
-        if (ItemFactory.isAgedBrie(item)
-                || ItemFactory.isBackstage(item)) {
-            if (item.quality < QUALITY_MAX) {
-                ItemFactory.increaseQualityByOne(item);
-                increaseQualityIfBackstage(item);
-            }
-        } else {
+        if(!ItemFactory.isAgedBrie(item)&& !ItemFactory.isBackstage(item)) {
             decreaseQualityAccordingToQuality(item);
         }
 
         if (ItemFactory.isSellInPassed(item)) {
-            if (ItemFactory.isAgedBrie(item)) {
-                ItemFactory.increaseQualityAccordingToQuality(item);
-            } else {
+            increaseQualityAgedBrie(item);
+
+            if(!ItemFactory.isAgedBrie(item)) {
                 decreaseQualityBackstage(item);
+            }
+        }
+    }
+
+    private void increaseQualityAgedBrie(Item item) {
+        if (ItemFactory.isAgedBrie(item)) {
+            if (item.quality < QUALITY_MAX) {
+                item.quality = item.quality + 1;
+            }
+        }
+    }
+
+    private void increaseQualityBackstage(Item item) {
+        if (ItemFactory.isBackstage(item)) {
+            if (item.quality < QUALITY_MAX) {
+                item.quality = item.quality + 1;
+                if (ItemFactory.isBackstage(item)) {
+                    increaseQualityAccordingToSellIn(item, 11);
+                    increaseQualityAccordingToSellIn(item, 6);
+                }
             }
         }
     }
@@ -54,13 +70,6 @@ class GildedRose {
         }
     }
 
-    private void increaseQualityIfBackstage(Item item) {
-        if (ItemFactory.isBackstage(item)) {
-            increaseQualityAccordingToSellIn(item, 11);
-            increaseQualityAccordingToSellIn(item, 6);
-        }
-    }
-
     private void decreaseSellInIfNotSulfuras(Item item) {
         ItemFactory.isSulfuras(item);
         decreaseSellInByOne(item);
@@ -71,7 +80,7 @@ class GildedRose {
     }
 
     private void increaseQualityByOne(Item item) {
-        ItemFactory.increaseQualityByOne(item);
+        item.quality = item.quality + 1;
     }
 
     private void decreaseQualityByOne(Item item) {
@@ -83,7 +92,9 @@ class GildedRose {
     }
 
     private void increaseQualityAccordingToQuality(Item item) {
-        ItemFactory.increaseQualityAccordingToQuality(item);
+        if (item.quality < QUALITY_MAX) {
+            item.quality = item.quality + 1;
+        }
     }
 
     private void decreaseQualityAccordingToQuality(Item item) {
@@ -101,7 +112,9 @@ class GildedRose {
 
     private void increaseQualityAccordingToSellIn(Item item, int sellIn) {
         if (item.sellIn < sellIn) {
-            ItemFactory.increaseQualityAccordingToQuality(item);
+            if (item.quality < QUALITY_MAX) {
+                item.quality = item.quality + 1;
+            }
         }
     }
 }
