@@ -14,10 +14,6 @@ class ItemComposition {
         return item.name.equals(itemType.getValue());
     }
 
-    private boolean isAgedBrie() {
-        return item.name.equals(ItemType.AGED_BRIE.getValue());
-    }
-
     private boolean isSellInPassed() {
         return item.sellIn < 0;
     }
@@ -35,21 +31,21 @@ class ItemComposition {
         increaseQualityAgedBrie();
         increaseQualityBackstage();
 
-        if (!isAgedBrie() && !isItemOf(ItemType.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+        if (!isItemOf(ItemType.AGED_BRIE) && !isItemOf(ItemType.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
             decreaseQualityAccordingToQuality();
         }
 
         if (isSellInPassed()) {
             increaseQualityAgedBrie();
 
-            if (!isAgedBrie()) {
+            if (!isItemOf(ItemType.AGED_BRIE)) {
                 decreaseQualityBackstage();
             }
         }
     }
 
     private void increaseQualityAgedBrie() {
-        if (isAgedBrie()) {
+        if (isItemOf(ItemType.AGED_BRIE)) {
             if (item.quality < QUALITY_MAX) {
                 item.quality = item.quality + 1;
             }
