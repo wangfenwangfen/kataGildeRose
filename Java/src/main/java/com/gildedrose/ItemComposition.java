@@ -98,6 +98,10 @@ class ItemComposition {
     }
 
      ItemComposition convertItemToItemComposition() {
+
+        if(item.name.equals(ItemType.CONJURED.getValue())){
+            return new Conjured(item);
+        }
         if(item.name.equals(ItemType.SULFURAS_HAND_OF_RAGNAROS.getValue())){
             return new Sulfurase(item);
         }
