@@ -98,8 +98,12 @@ class ItemComposition {
     }
 
      ItemComposition convertItemToItemComposition() {
-      //  if(item.name.equals(ItemType.AGED_BRIE))
+
+         if(item.name.equals(ItemType.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT.getValue())){
+             return new Backstage(item);
+         }
             return new AgedBrie(item);
+
     }
 
     @Override
