@@ -26,6 +26,7 @@ class ItemComposition {
         decreaseSellInByOne();
         increaseQualityAgedBrie();
         increaseQualityBackstage();
+        decreaseQualityConjured();
 
         if (!isItemOf(ItemType.AGED_BRIE) && !isItemOf(ItemType.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
             decreaseQualityAccordingToQuality();
@@ -63,6 +64,14 @@ class ItemComposition {
             item.quality = QUALITY_MIN;
         } else {
             decreaseQualityAccordingToQuality();
+        }
+    }
+
+    private void decreaseQualityConjured() {
+        if (item.quality > QUALITY_MIN && item.quality < QUALITY_MAX) {
+            if (isItemOf(ItemType.CONJURED)) {
+                item.quality = item.quality - 1;
+            }
         }
     }
 

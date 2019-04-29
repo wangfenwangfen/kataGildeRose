@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class GildedRoseTest {
+
     private void verifyItem(Item item, String expectedName, int expectedSellIn, int expectedQuality) {
         assertEquals(expectedName, item.name);
         assertEquals(expectedSellIn, item.sellIn);
@@ -83,6 +84,16 @@ public class GildedRoseTest {
         app.updateQuality();
 
         verifyItem(app.items[0], "Sulfuras, Hand of Ragnaros", -2, 50);
+
+    }
+    @Test
+    public void  quality_decrease_twice_if_is_Conjured() {
+        Item[] items = new Item[] { new Item("Conjured", 5, 30)};
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        verifyItem(app.items[0], "Conjured", 4, 28);
 
     }
 }
