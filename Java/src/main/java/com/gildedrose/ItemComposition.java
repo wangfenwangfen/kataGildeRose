@@ -22,12 +22,8 @@ class ItemComposition {
         item.quality = item.quality - 1;
     }
 
-    private boolean isSulfuras() {
-        return item.name.equals(ItemType.SULFURAS_HAND_OF_RAGNAROS.getValue());
-    }
-
     void updateQuality() {
-        decreaseSellInIfNotSulfuras();
+        decreaseSellInByOne();
         increaseQualityAgedBrie();
         increaseQualityBackstage();
 
@@ -70,18 +66,13 @@ class ItemComposition {
         }
     }
 
-    private void decreaseSellInIfNotSulfuras() {
-        isSulfuras();
-        decreaseSellInByOne();
-    }
-
     private void decreaseSellInByOne() {
         item.sellIn = item.sellIn - 1;
     }
 
     private void decreaseQualityAccordingToQuality() {
         if (item.quality > QUALITY_MIN) {
-            if (isSulfuras()) {
+            if (isItemOf(ItemType.SULFURAS_HAND_OF_RAGNAROS)) {
                 return;
             }
             decreaseQualityByOne();
