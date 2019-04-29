@@ -70,7 +70,7 @@ class ItemComposition {
     private void decreaseQualityConjured() {
         if (item.quality > QUALITY_MIN && item.quality < QUALITY_MAX) {
             if (isItemOf(ItemType.CONJURED)) {
-                item.quality = item.quality - 1;
+               decreaseQualityByOne();
             }
         }
     }
