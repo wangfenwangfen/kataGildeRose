@@ -14,6 +14,7 @@ class ItemComposition {
         return item.name.equals(itemType.getValue());
     }
 
+
     private boolean isSellInPassed() {
         return item.sellIn < 0;
     }
@@ -94,5 +95,25 @@ class ItemComposition {
                 item.quality = item.quality + 1;
             }
         }
+    }
+
+     ItemComposition convertItemToItemComposition() {
+      //  if(item.name.equals(ItemType.AGED_BRIE))
+            return new AgedBrie(item);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ItemComposition that = (ItemComposition) o;
+
+        return item != null ? item.equals(that.item) : that.item == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return item != null ? item.hashCode() : 0;
     }
 }

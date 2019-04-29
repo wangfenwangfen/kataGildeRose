@@ -14,6 +14,4 @@ class GildedRose {
             itemComposition.updateQuality();
         }
     }
-
-
 }
