@@ -23,4 +23,14 @@ public class ConvertItemTest {
 
         assertThat(itemComposition).isEqualTo(itemCompositionExpected);
     }
+
+    @Test
+    public void should_return_a_itemComposition_with_type_sulfuras() {
+        Item item = new Item("Sulfuras, Hand of Ragnaros", 5, 7);
+        ItemComposition itemComposition = new ItemComposition(item);
+        itemComposition = itemComposition.convertItemToItemComposition();
+        ItemComposition itemCompositionExpected = new Sulfurase(item);
+
+        assertThat(itemComposition).isEqualTo(itemCompositionExpected);
+    }
 }
