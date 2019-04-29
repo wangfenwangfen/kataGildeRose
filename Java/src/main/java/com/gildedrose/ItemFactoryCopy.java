@@ -1,14 +1,14 @@
 package com.gildedrose;
-class ItemFactory {
+class ItemFactoryCopy {
 
     final Item item;
 
-    private ItemFactory(Item item) {
+    private ItemFactoryCopy(Item item) {
         this.item = item;
     }
 
-    static ItemFactory getItemFactory(Item item){
-        return new ItemFactory(item);
+    static ItemFactoryCopy getItemFactory(Item item){
+        return new ItemFactoryCopy(item);
     }
 
     static boolean isBackstage(Item item) {

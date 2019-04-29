@@ -74,4 +74,15 @@ public class GildedRoseTest {
 
         verifyItem(app.items[0], "Backstage passes to a TAFKAL80ETC concert", -2, 0);
     }
+
+    @Test
+    public void quanlity_not_change_if_is_sulfuras_when_qualilty_is_greater_than_min() {
+        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", -1, 50)};
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        verifyItem(app.items[0], "Sulfuras, Hand of Ragnaros", -2, 50);
+
+    }
 }
