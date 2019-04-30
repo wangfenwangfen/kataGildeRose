@@ -1,7 +1,7 @@
 package com.gildedrose;
 
-class Conjured extends ItemComposition {
-    Conjured(Item item) {
+class Sulfuras extends ItemComposition {
+    Sulfuras(Item item) {
         super(item);
     }
 

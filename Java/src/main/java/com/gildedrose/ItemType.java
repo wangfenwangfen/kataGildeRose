@@ -6,7 +6,6 @@ public enum ItemType {
     SULFURAS_HAND_OF_RAGNAROS("Sulfuras, Hand of Ragnaros"), CONJURED("Conjured"),
     AGED_BRIE("Aged Brie");
 
-
     private String value;
 
     public String getValue() {

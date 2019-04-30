@@ -1,10 +1,10 @@
 package com.gildedrose;
 
-class ItemComposition {
+abstract class ItemComposition {
 
-    private static final int QUALITY_MAX = 50;
-    private static final int QUALITY_MIN = 0;
-    private final Item item;
+    static final int QUALITY_MAX = 50;
+    static final int QUALITY_MIN = 0;
+    Item item;
 
     ItemComposition(Item item) {
         this.item = item;
@@ -22,6 +22,8 @@ class ItemComposition {
     private void decreaseQualityByOne() {
         item.quality = item.quality - 1;
     }
+
+    abstract void updateQualityOfItem();
 
     void updateQuality() {
         decreaseSellInByOne();
@@ -95,21 +97,6 @@ class ItemComposition {
                 item.quality = item.quality + 1;
             }
         }
-    }
-
-     ItemComposition convertItemToItemComposition() {
-
-        if(item.name.equals(ItemType.CONJURED.getValue())){
-            return new Conjured(item);
-        }
-        if(item.name.equals(ItemType.SULFURAS_HAND_OF_RAGNAROS.getValue())){
-            return new Sulfurase(item);
-        }
-         if(item.name.equals(ItemType.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT.getValue())){
-             return new Backstage(item);
-         }
-            return new AgedBrie(item);
-
     }
 
     @Override
