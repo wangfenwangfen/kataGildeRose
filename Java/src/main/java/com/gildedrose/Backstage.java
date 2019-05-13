@@ -9,7 +9,19 @@ class Backstage extends ItemComposition {
     void updateQualityOfItem() {
         decreaseSellInByOne();
         increaseQualityBackstage();
+        if(isSellInPassed()){
+            decreaseQualityBackstage();
+        }
     }
+
+    private boolean isSellInPassed() {
+        return item.sellIn < 0;
+    }
+
+    private void decreaseQualityBackstage() {
+            item.quality = QUALITY_MIN;
+    }
+
     private void decreaseSellInByOne() {
         item.sellIn = item.sellIn - 1;
     }

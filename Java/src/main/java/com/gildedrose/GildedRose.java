@@ -29,6 +29,13 @@ class GildedRose {
         if(item.name.equals(ItemType.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT.getValue())){
             return new Backstage(item);
         }
+        if(item.name.equals(ItemType.DEXTERITY.getValue())){
+            return new Dexterity(item);
+        }
+        if(item.name.equals(ItemType.ELIXIR.getValue())){
+            return new Elixir(item);
+        }
+
         return new AgedBrie(item);
     }
 }

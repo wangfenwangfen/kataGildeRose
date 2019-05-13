@@ -7,6 +7,11 @@ class Sulfuras extends ItemComposition {
 
     @Override
     void updateQualityOfItem() {
-
+        decreaseSellInByOne();
     }
+
+    private void decreaseSellInByOne() {
+        item.sellIn = item.sellIn - 1;
+    }
+
 }
